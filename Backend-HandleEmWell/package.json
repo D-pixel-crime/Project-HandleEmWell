@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "backend for the project management system",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
   },
   "author": "Deepak Kumar Pal",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.8",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
