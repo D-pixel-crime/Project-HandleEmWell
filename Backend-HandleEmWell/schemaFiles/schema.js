@@ -7,6 +7,9 @@ import {
 } from "graphql";
 import { clients, projects } from "../sampleData.js";
 
+import { ClientSchemaModel } from "../models/Client.js";
+import { ProjectSchemaModel } from "../models/Project.js";
+
 const ClientType = new GraphQLObjectType({
   name: "Client",
   fields: () => ({
@@ -25,6 +28,14 @@ const ProjectType = new GraphQLObjectType({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     status: { type: GraphQLString },
+
+    //relations in graphQL
+    client: {
+      type: ClientType,
+      resolve(parent, args) {
+        return clients.find((element) => element.id === parent.clientId);
+      },
+    },
   }),
 });
 

@@ -3,9 +3,14 @@ import morgan from "morgan";
 import "dotenv/config";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from "./schemaFiles/schema.js";
+import colors from "colors";
+import { connectToDb } from "./config/db.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Connect to Database
+connectToDb();
 
 app.use(morgan("short"));
 
