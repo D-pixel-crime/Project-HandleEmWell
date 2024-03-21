@@ -23,7 +23,7 @@ const SingleProject = () => {
               e.preventDefault();
               navigate("/");
             }}
-            className="btn btn-warning btn-sm w-25 d-inline ms-auto"
+            className="btn btn-outline-success w-25 d-inline ms-auto"
           >
             Back
           </button>
