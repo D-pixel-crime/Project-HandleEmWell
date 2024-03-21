@@ -10,7 +10,7 @@ const ProjectCard = ({ project }) => {
             </div>
             <button className="btn btn-outline-info">
               <a
-                href={`/project/${project.id}`}
+                href={`/singleProject/${project.id}`}
                 className="link-underline link-underline-opacity-0"
               >
                 View

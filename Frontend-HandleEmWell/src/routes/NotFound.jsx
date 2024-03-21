@@ -10,7 +10,7 @@ const NotFound = () => {
         className="alert alert-danger d-flex align-items-center justify-content-center gap-3"
         role="alert"
       >
-        <FaExclamationTriangle /> Not Found!
+        <FaExclamationTriangle /> <>Error! This Page Does Not Exist.</>
       </div>
       <div
         style={{
