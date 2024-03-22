@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GET_PROJECTS, GET_SINGLE_PROJECT } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
 import ClientInfo from "../components/ClientInfo";
-import { FaTrash } from "react-icons/fa";
+import { FaPen, FaTrash } from "react-icons/fa";
 import { DELETE_PROJECT } from "../mutations/projectMutations";
+import EditProjectForm from "../components/EditProjectForm";
 
 const SingleProject = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const SingleProject = () => {
   return (
     <>
       {!loading && !error ? (
-        <div className="mx-auto w-75 card py-4 px-5">
+        <div className="mx-auto w-75 card py-4 px-5 mb-4">
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -59,8 +60,18 @@ const SingleProject = () => {
           <hr />
           <ClientInfo client={data.project.client} />
           <hr />
+          {/* <button
+            className="btn btn-primary mt-4 d-flex align-items-center justify-content-center btn-lg gap-2"
+            onClick={(event) => {
+              event.preventDefault();
+            }}
+          >
+            <FaPen />
+            <>Edit Project</>
+          </button> */}
+          <EditProjectForm projectDetails={data.project} />
           <button
-            className="btn btn-danger mt-4 d-flex align-items-center justify-content-center btn-lg"
+            className="btn btn-danger mt-4 d-flex align-items-center justify-content-center btn-lg gap-2"
             onClick={(event) => {
               event.preventDefault();
               deleteProject();
@@ -68,6 +79,7 @@ const SingleProject = () => {
             }}
           >
             <FaTrash />
+            <>Delete Project</>
           </button>
         </div>
       ) : (
