@@ -7,13 +7,13 @@ const HomePage = () => {
   return (
     <>
       <Projects />
-      <hr />
-      <div className="d-flex justify-content-between gap-3 mb-4 mt-4">
-        <AddClientModal />
+      <div className="d-flex justify-content-end gap-3 mb-4">
         <AddProjectModal />
       </div>
-      <hr />
       <Clients />
+      <div className="d-flex justify-content-end gap-3 mb-4 mt-4">
+        <AddClientModal />
+      </div>
     </>
   );
 };

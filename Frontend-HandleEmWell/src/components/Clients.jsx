@@ -12,21 +12,25 @@ const Clients = () => {
   return (
     <>
       {!loading && !error && (
-        <table className="table table-hover mt-3">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.allClients.map((element) => {
-              return <ClientRow key={element.id} client={element} />;
-            })}
-          </tbody>
-        </table>
+        <>
+          <h2 className="mt-5">Clients</h2>
+          <hr />
+          <table className="table table-hover mt-3">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.allClients.map((element) => {
+                return <ClientRow key={element.id} client={element} />;
+              })}
+            </tbody>
+          </table>
+        </>
       )}
     </>
   );

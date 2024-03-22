@@ -12,6 +12,8 @@ const Projects = () => {
     <>
       {data.allProjects.length > 0 ? (
         <>
+          <h2>Projects</h2>
+          <hr />
           <div className="row mt-4 mb-4">
             {data.allProjects.map((element) => {
               return <ProjectCard key={element.id} project={element} />;

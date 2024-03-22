@@ -4,7 +4,7 @@ export const ADD_PROJECT = gql`
   mutation addProject(
     $name: String!
     $description: String!
-    $status: ENUM!
+    $status: ProjectStatus!
     $clientId: ID!
   ) {
     addProject(
