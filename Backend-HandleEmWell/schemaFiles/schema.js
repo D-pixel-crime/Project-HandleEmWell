@@ -98,11 +98,12 @@ const MutationType = new GraphQLObjectType({
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args) {
-        const resDeleteClient = ClientSchemaModel.findByIdAndDelete(args.id);
-        const deleteAllClientProjects = ProjectSchemaModel.deleteMany({
-          clientId: args.id,
-        });
+      async resolve(parent, args) {
+        await ProjectSchemaModel.deleteMany({ clientId: args.id });
+
+        const resDeleteClient = await ClientSchemaModel.findByIdAndDelete(
+          args.id
+        );
         return resDeleteClient;
       },
     },
