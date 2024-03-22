@@ -14,21 +14,6 @@ const AddProjectModal = () => {
 
   const { loading, error, data } = useQuery(GET_CLIENTS);
 
-  //   const [addClient] = useMutation(ADD_CLIENT, {
-  //     variables: { name, email, phone },
-  //     update(cache, { data: { addClient } }) {
-  //       const { allClients } = cache.readQuery({
-  //         query: GET_CLIENTS,
-  //       });
-  //       cache.writeQuery({
-  //         query: GET_CLIENTS,
-  //         data: {
-  //           allClients: [...allClients, addClient],
-  //         },
-  //       });
-  //     },
-  //   });
-
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, status, clientId },
     update(cache, { data: { addProject } }) {

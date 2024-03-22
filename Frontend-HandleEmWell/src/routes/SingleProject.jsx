@@ -1,14 +1,34 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate, useParams } from "react-router-dom";
-import { GET_SINGLE_PROJECT } from "../queries/projectQueries";
+import { GET_PROJECTS, GET_SINGLE_PROJECT } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
 import ClientInfo from "../components/ClientInfo";
+import { FaTrash } from "react-icons/fa";
+import { DELETE_PROJECT } from "../mutations/projectMutations";
 
 const SingleProject = () => {
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { loading, error, data } = useQuery(GET_SINGLE_PROJECT, {
     variables: { id: projectId },
+  });
+  const res = useQuery(GET_PROJECTS);
+
+  const [deleteProject] = useMutation(DELETE_PROJECT, {
+    variables: { id: projectId },
+    update(cache, { data: { deleteProject } }) {
+      const { allProjects } = cache.readQuery({
+        query: GET_PROJECTS,
+      });
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: {
+          allProjects: allProjects.filter(
+            (element) => element.id !== deleteProject.id
+          ),
+        },
+      });
+    },
   });
 
   if (loading) return <Spinner />;
@@ -17,7 +37,7 @@ const SingleProject = () => {
   return (
     <>
       {!loading && !error ? (
-        <div className="mx-auto w-75 card p-5">
+        <div className="mx-auto w-75 card py-4 px-5">
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -38,6 +58,17 @@ const SingleProject = () => {
           </div>
           <hr />
           <ClientInfo client={data.project.client} />
+          <hr />
+          <button
+            className="btn btn-danger mt-4 d-flex align-items-center justify-content-center btn-lg"
+            onClick={(event) => {
+              event.preventDefault();
+              deleteProject();
+              navigate("/");
+            }}
+          >
+            <FaTrash />
+          </button>
         </div>
       ) : (
         <></>
